@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :tags
-  resources :ads
-  resources :users
-  get '/api/sample_data', to: 'api#sample_data'
+  resources :tags, only: [:index, :show, :create]
+  resources :ads, only: [:index, :show, :create, :update, :destroy]
+  resources :users, only: [:index, :show, :create]
+  get '/*path' => 'pages#index'
 end

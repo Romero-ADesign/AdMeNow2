@@ -72,3 +72,7 @@ group :test do
 end
 
 gem "hirb"
+gem 'active_model_serializers'
+gem 'activestorage'
+gem 'react-rails'
+gem 'rack-cors'

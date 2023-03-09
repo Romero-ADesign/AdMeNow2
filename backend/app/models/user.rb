@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_one_attached :profile_picture
     has_many :ads
     has_many :tags, through: :ads
 
@@ -7,4 +8,6 @@ class User < ApplicationRecord
     validates :phone_number, presence: true, length:{ is: 12 }, unless: ->(user) { user.email_address.present?}
     validates :email_address, presence: true, unless: ->(user) { user.phone_number.present?}
     validates :state, presence: true
+
+    
 end
