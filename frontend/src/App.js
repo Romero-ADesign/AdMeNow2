@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from "react";
+import Api from "./components/Api";
 
-function SampleComponent() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('/api/sample_data')
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, []);
-
-  if (!data) {
-    return <div>Loading...</div>;
-  }
-
-  return <div>{data.message}</div>;
+function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <Api />
+    </div>
+  );
 }
 
-export default SampleComponent;
+export default App;
