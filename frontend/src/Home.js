@@ -12,7 +12,7 @@ function Home({ ads, tags }) {
         <button>{tag.name}</button>
       ))}
       {ads.map((ad) => (
-        <Ad ad={ad} />
+        <Ad ad={ad} key={ad.id} />
       ))}
     </div>
   );
