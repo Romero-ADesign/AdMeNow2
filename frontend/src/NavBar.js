@@ -9,10 +9,10 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/ad-page">Ads</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/my-page">MyPage</Link>
+            <Link to="/mypage">MyPage</Link>
           </li>
         </ul>
       </nav>
