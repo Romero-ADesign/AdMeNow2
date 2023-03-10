@@ -1,11 +1,40 @@
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
 import React from "react";
-import Api from "./components/Api";
+import axios from "axios";
+import Home from "./Home.js";
+import Login from "./Login.js";
+import MyPage from "./MyPage.js";
+import NavBar from "./NavBar.js";
 
 function App() {
+  const [ads, setAds] = useState([]);
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/ads").then((resp) => {
+      setAds(resp.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/tags").then((resp) => {
+      setTags(resp.data);
+    });
+  }, []);
+
   return (
-    <div>
-      <h1>My App</h1>
-      <Api />
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavBar />}>
+            <Route index element={<Home ads={ads} tags={tags} />} />
+            <Route path="login" element={<Login />} />
+            <Route path="mypage" element={<MyPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
