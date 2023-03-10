@@ -3,8 +3,10 @@ import { Outlet, Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <>
-      <nav>
-        <ul>
+    <div id="container">
+      <nav id="header">
+        <h1>Ad Me Now</h1>
+        <h2>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -14,10 +16,11 @@ const NavBar = () => {
           <li>
             <Link to="/mypage">MyPage</Link>
           </li>
-        </ul>
+        </h2>
       </nav>
 
       <Outlet />
+      </div>
     </>
   );
 };

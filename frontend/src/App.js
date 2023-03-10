@@ -7,6 +7,7 @@ import Home from "./Home.js";
 import Login from "./Login.js";
 import MyPage from "./MyPage.js";
 import NavBar from "./NavBar.js";
+import DetailedAd from "./DetailedAd.js";
 
 function App() {
   const [ads, setAds] = useState([]);
@@ -31,7 +32,8 @@ function App() {
           <Route path="/" element={<NavBar />}>
             <Route index element={<Home ads={ads} tags={tags} />} />
             <Route path="login" element={<Login />} />
-            <Route path="mypage" element={<MyPage />} />
+            <Route path="mypage" element={<MyPage ads={ads} tags={tags}/>} />
+            <Route path="ad/:id" element={<DetailedAd  ads={ads}/>} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -13,17 +13,28 @@ protect_from_forgery with: :null_session
     end
 
     def create
-        ad = Ad.create!(ad_params)
-        render json: ad, status: :created
+        ad = Ad.new(ad_params)
+      
+        if ad.save
+            redirect_to ad, notice: 'Ad was successfully created.'
+          else
+            render json: { errors: @error }, status: 422
+          end
+        end
+
+    def by_user
+        ads = Ad.where(user_id: params[:user_id])
+        render json: ads
     end
 
     private
 
     def ad_params
-        params.permit(:tag_id, :user_id, :name, :description, :image, :price)
+        params.require(:ad).permit(:name, :description, :image, :price, :tag_id)
     end
 
     def invalid_ad
-        render json: { errors: error.message}, status: 422
-    end
+        @error = "Invalid ad parameters"
+        render json: { errors: @error }, status: 422
+      end
 end
