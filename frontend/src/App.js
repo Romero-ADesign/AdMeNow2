@@ -12,6 +12,7 @@ import DetailedAd from "./DetailedAd.js";
 function App() {
   const [ads, setAds] = useState([]);
   const [tags, setTags] = useState([]);
+  const [user, setUser] = useState();
 
   useEffect(() => {
     axios.get("http://localhost:3000/ads").then((resp) => {
@@ -25,13 +26,18 @@ function App() {
     });
   }, []);
 
+  function changeUser(newUser) {
+    setUser(newUser);
+    console.log(newUser);
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>
             <Route index element={<Home ads={ads} tags={tags} />} />
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login />} changeUser={changeUser} />
             <Route path="mypage" element={<MyPage ads={ads} tags={tags}/>} />
             <Route path="ad/:id" element={<DetailedAd  ads={ads}/>} />
           </Route>
