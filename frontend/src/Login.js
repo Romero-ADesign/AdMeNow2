@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Login() {
+function Login({ changeUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,7 +18,7 @@ function Login() {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => console.log(user));
+        r.json().then((newUser) => changeUser(newUser));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
