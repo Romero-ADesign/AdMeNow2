@@ -1,6 +1,7 @@
 class AdsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :invalid_ad
-protect_from_forgery with: :null_session
+    skip_before_action :authorize
+    skip_before_action :verify_authenticity_token
 
     def index 
         ad = Ad.all
