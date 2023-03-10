@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
 
-function MyPage() {
+function MyPage({ user }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -18,7 +18,7 @@ function MyPage() {
         description: description,
         image: image,
         price: parseInt(price),
-        user_id: 1,
+        user_id: user.id,
         tag_id: 1,
       }),
     };

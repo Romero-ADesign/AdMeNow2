@@ -35,9 +35,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>
-            <Route index element={<Home ads={ads} tags={tags} />} />
+            <Route index element={<Home user={user} ads={ads} tags={tags} />} />
             <Route path="login" element={<Login changeUser={changeUser} />} />
-            <Route path="mypage" element={<MyPage />} />
+            <Route path="mypage" element={<MyPage user={user} />} />
           </Route>
         </Routes>
       </BrowserRouter>

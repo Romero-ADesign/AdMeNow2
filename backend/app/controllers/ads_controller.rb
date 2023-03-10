@@ -18,6 +18,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :invalid_ad
         render json: ad, status: :created
     end
 
+    def update
+        ad = Ad.find(params[:id])
+        ad.update(ad_params)
+        render json: ad, status: :created
+    end
+
     private
 
     def ad_params

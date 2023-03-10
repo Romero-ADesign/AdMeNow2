@@ -3,7 +3,7 @@ import React from "react";
 import axios from "axios";
 import Ad from "./Ad.js";
 
-function Home({ ads, tags }) {
+function Home({ ads, tags, user }) {
   return (
     <div className="Ads">
       <h1>Current Ads</h1>
@@ -12,7 +12,7 @@ function Home({ ads, tags }) {
         <button>{tag.name}</button>
       ))}
       {ads.map((ad) => (
-        <Ad ad={ad} key={ad.id} />
+        <Ad ad={ad} key={ad.id} user={user} />
       ))}
     </div>
   );
