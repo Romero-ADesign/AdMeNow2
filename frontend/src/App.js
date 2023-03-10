@@ -2,28 +2,36 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import React from "react";
+import axios from "axios";
 import Home from "./Home.js";
-import Ads from "./Ads.js";
+import Login from "./Login.js";
 import MyPage from "./MyPage.js";
 import NavBar from "./NavBar.js";
 
 function App() {
-  /* const [count, setCount] = useState(0);
+  const [ads, setAds] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []); */
+    axios.get("http://localhost:3000/ads").then((resp) => {
+      setAds(resp.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/tags").then((resp) => {
+      setTags(resp.data);
+    });
+  }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<NavBar />}>
-            <Route index element={<Home />} />
-            <Route path="ad-page" element={<Ads />} />
-            <Route path="my-page" element={<MyPage />} />
+            <Route index element={<Home ads={ads} tags={tags} />} />
+            <Route path="login" element={<Login />} />
+            <Route path="mypage" element={<MyPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

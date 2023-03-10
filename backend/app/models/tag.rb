@@ -2,5 +2,5 @@ class Tag < ApplicationRecord
     has_many :ads, dependent: :destroy
     has_many :users, through: :ads
 
-    validates :name, presence: true
+    validates :name, presence: true, uniqueness: true
 end
