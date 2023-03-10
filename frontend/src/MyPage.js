@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import axios from "axios";
 
 function MyPage() {
   const [name, setName] = useState("");
@@ -17,6 +18,8 @@ function MyPage() {
         description: description,
         image: image,
         price: parseInt(price),
+        user_id: 1,
+        tag_id: 1,
       }),
     };
     fetch("http://localhost:3000/ads", configObj)
